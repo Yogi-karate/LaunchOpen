@@ -56,7 +56,6 @@ app.list= new app.BookListNew();
       },      
       events: {
 		   
-        'click .destroy': 'destroy',
 		 'click [type="checkbox"]': 'clicked'
 	
       },
@@ -75,11 +74,7 @@ app.list= new app.BookListNew();
     e.currentTarget.value = "false";
   }
 	
-  }, 
-
-      destroy: function(){
-        this.model.destroy();
-      }      
+  }
     });
 
 
@@ -93,8 +88,8 @@ app.list= new app.BookListNew();
       },
       events: {
         'click #add': 'addBook',
-		'click #book_del':'deleteBook',
-		 
+		'click #book_archieve':'archieveBook',
+		 'click #book_delete':'deleteBook'
       },
       addBook: function(e){
       
@@ -126,25 +121,34 @@ sel:''
         }
       },
 	  
-	  deleteBook: function(){
-		var x=[];
-	
-		var count=0;
-		app.bookList.each(function( model ) {
-    if(model.get("sel")=="checked")
+	  archieveBook: function(){
+
+		_.chain(app.bookList.models).clone().each(function(model){
+   if(model.get("sel")=="checked")
 	{
-	x.push(model);
-		count++;
+		var title=model.get("title");
+		var author=model.get("author");
+		var price=model.get("price1");
+		var date=model.get("date1");
+		var sel=model.get("sel");
+		app.list.create({title:title,author:author,price1:price,date1:date,sel:sel});
+  model.destroy();
 	}
-	});
-  app.list.add(x);
-		app.bookList.remove(x);
-		//console.log(app.list);
-		//app.list.add(ar);
+});
 		console.log(app.bookList);
 		console.log(app.list);
 	  },
-	
+		  deleteBook: function(){
+
+		_.chain(app.bookList.models).clone().each(function(model){
+   if(model.get("sel")=="checked")
+	{
+  model.destroy();
+	}
+});
+		console.log(app.bookList);
+		console.log(app.list);
+	  },
 	
     });
 	
@@ -212,19 +216,19 @@ console.log(this.model.attributes);
 	  
 	  
 	    deleteBook: function(){
-		var x1=[];
-		var count=0;
-		app.list.each(function( model ) {
-    if(model.get("sel")=="checked2")
-	{
-	x1.push(model);
-		count++;
-	}
-	});
-  
-		app.bookList.add(x1);
-		app.list.remove(x1);
 
+  _.chain(app.list.models).clone().each(function(model){
+   if(model.get("sel")=="checked2")
+	{
+		var title=model.get("title");
+		var author=model.get("author");
+		var price=model.get("price1");
+		var date=model.get("date1");
+		var sel=model.get("sel");
+		app.bookList.create({title:title,author:author,price1:price,date1:date,sel:sel});
+  model.destroy();
+	}
+});
 		console.log(app.bookList);
 		console.log(app.list);
 	  },
