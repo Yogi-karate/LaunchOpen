@@ -63,14 +63,15 @@ border:1px solid black; /* Hides bullet points from todo list */
 			  <td><input id="new-price1" placeholder="What's the price?" type="number" autofocus required></td>
 			    <td><input id="new-date" type="date" autofocus required></td>
 			   <td><button id="add" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button></td>
-			    <td><button id="book_del">delete</button></td>
+			    <td><button id="book_archieve" class="btn btn-warning"><i class="fa fa-archive" aria-hidden="true"></i></button></td>
+				<td><button id="book_delete" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
 			 </tr>
 			<tr class="success">
 			   <th>Title</th>
 			   <th>Author</th>
 			   <th>Price</th>
 			   <th>Publication</th>
-			   <th>Del</th>
+			   <th>Archive</th>
 			 </tr>
 			</thead>
 		<!-- new book details are appended here -->
@@ -89,7 +90,7 @@ border:1px solid black; /* Hides bullet points from todo list */
 		         <td><%- price1 %></td>
 		  <td><%- date1 %></td>
 		   <td> <input type="checkbox" /></td>
-         <td><button class="destroy btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td> </script>
+          </script>
 
 		 
 		 
